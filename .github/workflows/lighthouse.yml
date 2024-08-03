@@ -14,10 +14,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20
-      - name: run Lighthouse CI
+      - name: Run Lighthouse CI
         run: |
           npm install -g @lhci/cli@0.14.x
           lhci autorun --disable-network-throttling --disable-cpu-throttling
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LIGHTHOUSE_CHECK_ACCESS_TOKEN }}
       - name: Save lighthouse results
         if: always()
         uses: actions/upload-artifact@v4
