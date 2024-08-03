@@ -4,7 +4,7 @@ name: Cypress UI Tests Run on Pipeline with Lighthouse
 on:
   push:
     branches:
-      - cypress-ui-lighthouse
+      # - cypress-ui-lighthouse
       - main
 
 jobs:
