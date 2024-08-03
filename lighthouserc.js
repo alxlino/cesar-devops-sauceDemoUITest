@@ -1,7 +1,7 @@
 module.exports = {
     ci: {
         collect: {
-            url: ['https://www.saucedemo.com'],
+            url: ['https://cesar.school/'],
             numberOfRuns: 3,
             settings: {
                 onlyCategories: ['accessibility'],
