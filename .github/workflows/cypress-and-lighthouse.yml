@@ -1,10 +1,10 @@
-name: Cypress UI Tests with Lighthouse
+name: Run Cypress UI Tests and Run Lighthouse
 # run-name: GitHub Actions using Cypress UI and Upload Artifacts
 # on: [push]
 on:
   push:
     branches:
-      # - cypress-ui-lighthouse
+      - cypress-ui-lighthouse
       - main
 
 jobs:
