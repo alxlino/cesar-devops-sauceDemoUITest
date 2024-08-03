@@ -1,4 +1,4 @@
-name: CI
+name: Run Only Lighthouse
 on:
   push:
     branches:
