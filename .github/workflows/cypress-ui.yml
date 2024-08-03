@@ -1,6 +1,11 @@
 name: Cypress UI Tests Run on Pipeline
 # run-name: GitHub Actions using Cypress UI and Upload Artifacts
-on: [push]
+# on: [push]
+on:
+  push:
+    branches:
+      - cypress-ui
+      - main
 
 jobs:
   cypress-ui-run:
