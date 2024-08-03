@@ -1,9 +1,9 @@
 name: Cypress UI Tests Run on Pipeline
-run-name: GitHub Actions using Cypress UI and Upload Artifacts
+# run-name: GitHub Actions using Cypress UI and Upload Artifacts
 on: [push]
 
 jobs:
-  cypress-run:
+  cypress-ui-run:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false # https://github.com/cypress-io/github-action/issues/48
