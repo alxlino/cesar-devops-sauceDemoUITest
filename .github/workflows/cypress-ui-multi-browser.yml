@@ -1,4 +1,4 @@
-name: Cypress UI Tests Run on Pipeline
+name: Cypress UI Tests Run on Pipeline Multi Browser
 
 on: 
   push: 
