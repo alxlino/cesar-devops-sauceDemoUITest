@@ -1,0 +1,37 @@
+name: Cypress UI Tests Run on Pipeline
+run-name: GitHub Actions using Cypress UI and Upload Artifacts
+on: [push]
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false # https://github.com/cypress-io/github-action/issues/48
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+      
+      - name: Install Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      
+      - name: Npm Install
+        run: npm install
+      
+      - name: Run Cypress
+        run: npx cypress run
+
+      - name: Upload Screenshots artifact
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-screenshots
+          path: ./cypress/screenshots
+
+      - name: Upload Video artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: usuarios.cy.js.mp4
+          path: ./cypress/videos/usuarios.cy.js.mp4
