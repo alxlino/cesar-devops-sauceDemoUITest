@@ -1,10 +1,10 @@
-name: Cypress UI Tests Run on Pipeline with Lighthouse
+name: Cypress UI Tests with Lighthouse
 # run-name: GitHub Actions using Cypress UI and Upload Artifacts
 # on: [push]
 on:
   push:
     branches:
-      # - cypress-ui-lighthouse
+      - cypress-ui-lighthouse
       - main
 
 jobs:
@@ -40,7 +40,33 @@ jobs:
         with:
           name: sauceLogin.cy.js.mp4
           path: ./cypress/videos/sauceLogin.cy.js.mp4
-
+  
+  lighthouse-run:
+    name: Lighthouse
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+      
+      - name: Install Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      
+      - name: Run Lighthouse CI
+        run: |
+          npm install -g @lhci/cli@0.14.x
+          lhci autorun --disable-network-throttling --disable-cpu-throttling
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LIGHTHOUSE_CHECK_ACCESS_TOKEN }}
+      
+      - name: Save lighthouse results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-results
+          path: .lighthouseci
+  
   # lighthouse:
   #   runs-on: ubuntu-latest
   #   steps:
@@ -53,13 +79,13 @@ jobs:
   #         uploadArtifacts: true # save results as an action artifacts
   #         temporaryPublicStorage: true # upload lighthouse report to the temporary storage
 
-  lighthouse_with_config_file:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Audit URLs using Lighthouse
-        uses: treosh/lighthouse-ci-action@v12
-        with:
-          configPath: 'lighthouserc.js'
-          uploadArtifacts: true # save results as an action artifacts
-          temporaryPublicStorage: true # upload lighthouse report to the temporary storage
+  # lighthouse_with_config_file:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: Audit URLs using Lighthouse
+  #       uses: treosh/lighthouse-ci-action@v12
+  #       with:
+  #         configPath: 'lighthouserc.js'
+  #         uploadArtifacts: true # save results as an action artifacts
+  #         temporaryPublicStorage: true # upload lighthouse report to the temporary storage

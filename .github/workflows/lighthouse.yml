@@ -2,7 +2,8 @@ name: Run Only Lighthouse
 on:
   push:
     branches:
-      - cypress-ui-lighthouse
+      # - cypress-ui-lighthouse
+      - main
 
 jobs:
   lhci:
