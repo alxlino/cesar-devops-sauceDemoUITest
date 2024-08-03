@@ -75,20 +75,20 @@ jobs:
           name: cypress-screenshots-edge
           path: ./cypress/screenshots
       
-      - name: Run Cypress with Firefox
-        if: always()
-        run: npx cypress run --browser firefox
+      # - name: Run Cypress with Firefox
+      #   if: always()
+      #   run: npx cypress run --browser firefox
 
-      - name: Upload Video artifact Firefox
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: firefox-usuarios.cy.js.mp4
-          path: ./cypress/videos/usuarios.cy.js.mp4
+      # - name: Upload Video artifact Firefox
+      #   if: always()
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: firefox-usuarios.cy.js.mp4
+      #     path: ./cypress/videos/usuarios.cy.js.mp4
 
-      - name: Upload Screenshots artifact Firefox
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: cypress-screenshots-firefox
-          path: ./cypress/screenshots
+      # - name: Upload Screenshots artifact Firefox
+      #   if: failure()
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: cypress-screenshots-firefox
+      #     path: ./cypress/screenshots
